@@ -6,23 +6,20 @@ router.get('/', function (req, res) {
   res.redirect('/index');
 });
 
-
 router.get('/index', function (req, res) {
   burger.selectAll(function(data) {
-    var burgersObj = { burgers: data };
-    
+    var burgersObj = { 
+      burgers: data 
+    };
     res.render('index', burgersObj);
   });
 });
 
-
 router.post('/burger/create', function (req, res) {
   burger.insertOne(req.body.burger_name, function() {
-    console.log(req.body.burger_name);
     res.redirect('/index');
   });
 });
-
 
 
 router.post('/burger/eat/:id', function (req, res) {
